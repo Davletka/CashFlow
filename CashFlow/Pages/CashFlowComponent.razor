@@ -1,0 +1,120 @@
+﻿@page "/cashflow"
+
+<form>
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+        <label class="form-label" for="form6Example1">Приход/Расход</label>
+        <select class="form-control" @bind="IncomeExpense_">
+         <option></option>
+          <option>Приход</option>
+          <option>Расход</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <label class="form-label">Сумма</label>
+        <input type="number" id="form6Example2" class="form-control" @bind-value="Sum_"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example3">Что?</label>
+        <select class="form-control" @bind="What_">
+         <option></option>
+          <option>Налоги</option>
+          <option>Налог основателя</option>
+          <option>Оплата сотрудникам</option>
+          <option>Вакансии</option>
+          <option>Премии сотрудникам</option>
+          <option>Налоги на сотрудников</option>
+          <option>Офис сервисы</option>
+          <option>Офис</option>
+          <option>Сервисы за клиентов (EduIndex, ...)</option>
+          <option>RPA</option>
+          <option>Реклама, маркетинг</option>
+          <option>Обучение, сообщества</option>
+          <option>Корректировка</option>
+          <option>Оплата за работы</option>
+          <option>Пополнение счёта</option>
+          <option>Оплата подрядчикам</option>
+        </select>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example4">Комментарий</label>
+    <input type="text" id="form6Example4" class="form-control" @bind-value="Comment" />
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example5">Сотрудник</label>
+        <select class="form-control" @bind="Employee_">
+         <option></option>
+          <option>TS</option>
+          <option>DS</option>
+          <option>RI</option>
+          <option>NP</option>
+          <option>IV</option>
+          <option>NU</option>
+          <option>AE</option>
+          <option>AK (offsite)</option>
+        </select>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example6">За какой месяц?</label>
+        <select class="form-control" @bind="Month_">
+         <option></option>
+          <option>Январь</option>
+          <option>Февраль</option>
+          <option>Март</option>
+          <option>Апрель</option>
+          <option>Май</option>
+          <option>Июнь</option>
+          <option>Июль</option>
+          <option>Август</option>
+          <option>Сентябрь</option>
+          <option>Октябрь</option>
+          <option>Ноябрь</option>
+          <option>Декабрь</option>
+        </select>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example7">Дата</label>
+    <input type="date" id="form6Example7" class="form-control" @bind-value="Date_"/>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example7">Фонд</label>
+        <select class="form-control" @bind="Fund_">
+         <option></option>
+          <option>Фонд основателя</option>
+          <option>Фонд ЗП</option>
+          <option>Фонд Маркетинг</option>
+          <option>Фонд офис</option>
+          <option>Фонд резерва и развития</option>
+        </select>
+  </div>
+
+    <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example7">Месяц По порядку</label>
+    <input type="number" id="form6Example7" class="form-control" @bind-value="MonthInOrder_"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4">Отправить</button>
+</form>
+
+@code {
+    private string IncomeExpense_;
+    private string Sum_;
+    private string What_;
+    private string Comment;
+    private string Employee_;
+    private string Month_;
+    private DateTime Date_;
+    private string Fund_;
+    private string MonthInOrder_;
+}
