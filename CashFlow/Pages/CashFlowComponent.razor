@@ -1,4 +1,10 @@
-﻿@page "/cashflow"
+﻿@using Google.Apis;
+@using CashFlow.Data;
+@using Google.Apis.Auth.OAuth2
+@using Google.Apis.Sheets.v4
+@using Google.Apis.Sheets.v4.Data
+
+@page "/cashflow"
 
 <form>
   <div class="row mb-4">
@@ -7,8 +13,8 @@
         <label class="form-label" for="form6Example1">Приход/Расход</label>
         <select class="form-control" @bind="IncomeExpense_">
          <option></option>
-          <option>Приход</option>
-          <option>Расход</option>
+          <option value="доход">Доход</option>
+          <option value="расход">Расход</option>
         </select>
       </div>
     </div>
@@ -24,22 +30,22 @@
     <label class="form-label" for="form6Example3">Что?</label>
         <select class="form-control" @bind="What_">
          <option></option>
-          <option>Налоги</option>
-          <option>Налог основателя</option>
-          <option>Оплата сотрудникам</option>
-          <option>Вакансии</option>
-          <option>Премии сотрудникам</option>
-          <option>Налоги на сотрудников</option>
-          <option>Офис сервисы</option>
-          <option>Офис</option>
-          <option>Сервисы за клиентов (EduIndex, ...)</option>
-          <option>RPA</option>
-          <option>Реклама, маркетинг</option>
-          <option>Обучение, сообщества</option>
-          <option>Корректировка</option>
-          <option>Оплата за работы</option>
-          <option>Пополнение счёта</option>
-          <option>Оплата подрядчикам</option>
+          <option value="Налоги">Налоги</option>
+          <option value="Налог основателя">Налог основателя</option>
+          <option value="Оплата сотрудникам">Оплата сотрудникам</option>
+          <option value="Вакансии">Вакансии</option>
+          <option value="Премии сотрудникам">Премии сотрудникам</option>
+          <option value="Налоги на сотрудников">Налоги на сотрудников</option>
+          <option value="Офис сервисы">Офис сервисы</option>
+          <option value="Офис">Офис</option>
+          <option value="Сервисы за клиентов (EduIndex, ...)">Сервисы за клиентов (EduIndex, ...)</option>
+          <option value="RPA">RPA</option>
+          <option value="Реклама, маркетинг">Реклама, маркетинг</option>
+          <option value="Обучение, сообщества">Обучение, сообщества</option>
+          <option value="Корректировка">Корректировка</option>
+          <option value="Оплата за работы">Оплата за работы</option>
+          <option value="Пополнение счёта">Пополнение счёта</option>
+          <option value="Оплата подрядчикам">Оплата подрядчикам</option>
         </select>
   </div>
 
@@ -52,14 +58,14 @@
     <label class="form-label" for="form6Example5">Сотрудник</label>
         <select class="form-control" @bind="Employee_">
          <option></option>
-          <option>TS</option>
-          <option>DS</option>
-          <option>RI</option>
-          <option>NP</option>
-          <option>IV</option>
-          <option>NU</option>
-          <option>AE</option>
-          <option>AK (offsite)</option>
+          <option value="TS">TS</option>
+          <option value="DS">DS</option>
+          <option value="RI">RI</option>
+          <option value="NP">NP</option>
+          <option value="IV">IV</option>
+          <option value="NU">NU</option>
+          <option value="AE">AE</option>
+          <option value="AK (offsite)">AK (offsite)</option>
         </select>
   </div>
 
@@ -67,18 +73,18 @@
     <label class="form-label" for="form6Example6">За какой месяц?</label>
         <select class="form-control" @bind="Month_">
          <option></option>
-          <option>Январь</option>
-          <option>Февраль</option>
-          <option>Март</option>
-          <option>Апрель</option>
-          <option>Май</option>
-          <option>Июнь</option>
-          <option>Июль</option>
-          <option>Август</option>
-          <option>Сентябрь</option>
-          <option>Октябрь</option>
-          <option>Ноябрь</option>
-          <option>Декабрь</option>
+          <option value="январь">Январь</option>
+          <option value="февраль">Февраль</option>
+          <option value="март">Март</option>
+          <option value="апрель">Апрель</option>
+          <option value="май">Май</option>
+          <option value="июнь">Июнь</option>
+          <option value="июль">Июль</option>
+          <option value="август">Август</option>
+          <option value="сентябрь">Сентябрь</option>
+          <option value="октябрь">Октябрь</option>
+          <option value="ноябрь">Ноябрь</option>
+          <option value="декабрь">Декабрь</option>
         </select>
   </div>
 
@@ -91,11 +97,11 @@
     <label class="form-label" for="form6Example7">Фонд</label>
         <select class="form-control" @bind="Fund_">
          <option></option>
-          <option>Фонд основателя</option>
-          <option>Фонд ЗП</option>
-          <option>Фонд Маркетинг</option>
-          <option>Фонд офис</option>
-          <option>Фонд резерва и развития</option>
+          <option value="Фонд основателя">Фонд основателя</option>
+          <option value="Фонд ЗП">Фонд ЗП</option>
+          <option value="Фонд Маркетинг">Фонд Маркетинг</option>
+          <option value="Фонд офис">Фонд офис</option>
+          <option value="Фонд резерва и развития">Фонд резерва и развития</option>
         </select>
   </div>
 
@@ -104,7 +110,13 @@
     <input type="number" id="form6Example7" class="form-control" @bind-value="MonthInOrder_"/>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-block mb-4">Отправить</button>
+  <button class="btn btn-primary" @onclick="SubmitData">Отправить</button>
+
+  @if (Check == true)
+    {
+        <h2>@Message</h2>
+    }
+
 </form>
 
 @code {
@@ -114,7 +126,59 @@
     private string Comment;
     private string Employee_;
     private string Month_;
-    private DateTime Date_;
+    private DateOnly Date_;
     private string Fund_;
     private string MonthInOrder_;
+
+    private readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
+    private readonly string ApplicationName = "OneMoreCopy";
+    private readonly string SpreadsheetId = "1zJaeXqbMFXidC2YrB433hJU_NVQXikB3gsBS7VR32wQ";
+    private readonly string sheet = "ДДС";
+
+    private bool Check = false;
+    private string Message;
+    private static SheetsService service;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        GoogleCredential credential;
+
+        using (var stream = new FileStream("first-371421-a9ce403b6c0c.json", FileMode.Open, FileAccess.Read))
+        {
+            credential = GoogleCredential.FromStream(stream)
+                .CreateScoped(Scopes);
+        }
+
+        service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+        {
+            HttpClientInitializer = credential,
+            ApplicationName = ApplicationName,
+        });
+    }
+
+    private void SubmitData()
+    {
+        if (IncomeExpense_ != null && Sum_ != null && What_ != null && Employee_ != null && Month_ != null && Fund_ != null && MonthInOrder_ != null)
+        {
+            var range = $"{sheet}!A:I";
+            var valueRange = new ValueRange();
+
+            var objectList = new List<object>() { IncomeExpense_, Sum_, What_, Comment, Employee_, Month_, Date_, Fund_, MonthInOrder_ };
+            valueRange.Values = new List<IList<object>> { objectList };
+
+            var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
+            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+
+            var appendResponce = appendRequest.Execute();
+
+            Check = true;
+            Message = "Данные успешно отправились";
+        }
+        else
+        {
+            Check = true;
+            Message = "Заполните нужные поля";
+        }
+    }
 }
