@@ -12,9 +12,14 @@
       <div class="form-outline">
         <label class="form-label" for="form6Example1">Приход/Расход</label>
         <select class="form-control" @bind="IncomeExpense_">
-         <option></option>
-          <option value="доход">Доход</option>
-          <option value="расход">Расход</option>
+         <option></option>     
+            @for (int i = 1; i < @valuesdata[1].Count; i++)
+            {
+                @if (@valuesdata[@i][1] != "")
+                {
+                    <option value="@valuesdata[@i][1]">@valuesdata[@i][1]</option>    
+                }
+            }
         </select>
       </div>
     </div>
@@ -30,22 +35,13 @@
     <label class="form-label" for="form6Example3">Что?</label>
         <select class="form-control" @bind="What_">
          <option></option>
-          <option value="Налоги">Налоги</option>
-          <option value="Налог основателя">Налог основателя</option>
-          <option value="Оплата сотрудникам">Оплата сотрудникам</option>
-          <option value="Вакансии">Вакансии</option>
-          <option value="Премии сотрудникам">Премии сотрудникам</option>
-          <option value="Налоги на сотрудников">Налоги на сотрудников</option>
-          <option value="Офис сервисы">Офис сервисы</option>
-          <option value="Офис">Офис</option>
-          <option value="Сервисы за клиентов (EduIndex, ...)">Сервисы за клиентов (EduIndex, ...)</option>
-          <option value="RPA">RPA</option>
-          <option value="Реклама, маркетинг">Реклама, маркетинг</option>
-          <option value="Обучение, сообщества">Обучение, сообщества</option>
-          <option value="Корректировка">Корректировка</option>
-          <option value="Оплата за работы">Оплата за работы</option>
-          <option value="Пополнение счёта">Пополнение счёта</option>
-          <option value="Оплата подрядчикам">Оплата подрядчикам</option>
+            @for (int i = 1; i < valuesdata[2].Count; i++)
+            {
+                @if (valuesdata[@i][2] != "")
+                {
+                    <option value="@valuesdata[@i][2]">@valuesdata[@i][2]</option>    
+                }
+            }
         </select>
   </div>
 
@@ -58,14 +54,13 @@
     <label class="form-label" for="form6Example5">Сотрудник</label>
         <select class="form-control" @bind="Employee_">
          <option></option>
-          <option value="TS">TS</option>
-          <option value="DS">DS</option>
-          <option value="RI">RI</option>
-          <option value="NP">NP</option>
-          <option value="IV">IV</option>
-          <option value="NU">NU</option>
-          <option value="AE">AE</option>
-          <option value="AK (offsite)">AK (offsite)</option>
+            @for (int i = 1; i < valuesdata[4].Count; i++)
+            {
+                @if (valuesdata[@i][4] != "")
+                {
+                    <option value="@valuesdata[@i][4]">@valuesdata[@i][4]</option>    
+                }
+            }
         </select>
   </div>
 
@@ -73,41 +68,47 @@
     <label class="form-label" for="form6Example6">За какой месяц?</label>
         <select class="form-control" @bind="Month_">
          <option></option>
-          <option value="январь">Январь</option>
-          <option value="февраль">Февраль</option>
-          <option value="март">Март</option>
-          <option value="апрель">Апрель</option>
-          <option value="май">Май</option>
-          <option value="июнь">Июнь</option>
-          <option value="июль">Июль</option>
-          <option value="август">Август</option>
-          <option value="сентябрь">Сентябрь</option>
-          <option value="октябрь">Октябрь</option>
-          <option value="ноябрь">Ноябрь</option>
-          <option value="декабрь">Декабрь</option>
+            @for (int i = 1; i < valuesdata[8].Count; i++)
+            {
+                @if (valuesdata[@i][8] != "")
+                {
+                    <option value="@valuesdata[@i][8]">@valuesdata[@i][8]</option>    
+                }
+            }
         </select>
   </div>
 
   <div class="form-outline mb-4">
     <label class="form-label" for="form6Example7">Дата</label>
-    <input type="date" id="form6Example7" class="form-control" @bind-value="Date_"/>
+    <input type="date" id="form6Example7" class="form-control" @bind-value="Date_" />
   </div>
 
   <div class="form-outline mb-4">
     <label class="form-label" for="form6Example7">Фонд</label>
         <select class="form-control" @bind="Fund_">
          <option></option>
-          <option value="Фонд основателя">Фонд основателя</option>
-          <option value="Фонд ЗП">Фонд ЗП</option>
-          <option value="Фонд Маркетинг">Фонд Маркетинг</option>
-          <option value="Фонд офис">Фонд офис</option>
-          <option value="Фонд резерва и развития">Фонд резерва и развития</option>
+            @for (int i = 1; i < valuesdata[0].Count; i++)
+            {
+                @if (valuesdata[@i][0] != "")
+                {
+                    <option value="@valuesdata[@i][0]">@valuesdata[@i][0]</option>    
+                }
+            }
         </select>
   </div>
 
     <div class="form-outline mb-4">
     <label class="form-label" for="form6Example7">Месяц По порядку</label>
-    <input type="number" class="form-control" @bind-value="MonthInOrder_"/>
+        <select class="form-control" @bind="MonthInOrder_">
+         <option></option>
+            @for (int i = 1; i < valuesdata[9].Count; i++)
+            {
+                @if (valuesdata[@i][9] != "")
+                {
+                    <option value="@valuesdata[@i][9]">@valuesdata[@i][9]</option>    
+                }
+            }
+        </select>
   </div>
 
   <button type="button" class="btn btn-primary" @onclick="SubmitData">Отправить</button>
@@ -127,18 +128,22 @@
     private string Comment;
     private string Employee_;
     private string Month_;
-    private DateOnly Date_;
+    private DateTime Date_  = DateTime.Now;
+    private int month_ = DateTime.Now.Month;
+
     private string Fund_;
-    private string MonthInOrder_;
+    private int MonthInOrder_ = DateTime.Now.Month;
 
     private readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
     private readonly string ApplicationName = "OneMoreCopy";
     private readonly string SpreadsheetId = "1zJaeXqbMFXidC2YrB433hJU_NVQXikB3gsBS7VR32wQ";
     private readonly string sheet = "ДДС";
+    private readonly string sheet1 = "Источники (списки)";
 
     private bool Check = false;
     private string Message;
     private static SheetsService service;
+    private IList<IList<object>> valuesdata = new List<IList<object>>();
 
 
     protected override async Task OnInitializedAsync()
@@ -156,16 +161,37 @@
             HttpClientInitializer = credential,
             ApplicationName = ApplicationName,
         });
+
+        var range = $"{sheet1}!A:J";
+
+        var request = service.Spreadsheets.Values.Get(SpreadsheetId, range);
+
+        var responce = request.Execute();
+
+        var values = responce.Values;
+
+        foreach(var item in values)
+        {
+            if (item.Count != 17 )
+            {
+                valuesdata.Add(item); 
+            }
+            else
+            {
+                return;
+            }
+
+        }
     }
 
     private void SubmitData()
     {
         if (IncomeExpense_ != null && Sum_ != null && What_ != null && Employee_ != null && Month_ != null && Fund_ != null && MonthInOrder_ != null)
         {
-            var range = $"{sheet}!A:I";
+            var range = $"{sheet}!A:J18";
             var valueRange = new ValueRange();
 
-            var objectList = new List<object>() { IncomeExpense_, Sum_, What_, Comment, Employee_, Month_, Date_, Fund_, MonthInOrder_ };
+            var objectList = new List<object>() { IncomeExpense_, Sum_, What_, Comment, Employee_, Month_, Date_.ToString("dd.MM.yyyy"), Fund_, MonthInOrder_ };
             valueRange.Values = new List<IList<object>> { objectList };
 
             var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
@@ -182,4 +208,5 @@
             Message = "Заполните нужные поля";
         }
     }
+
 }
