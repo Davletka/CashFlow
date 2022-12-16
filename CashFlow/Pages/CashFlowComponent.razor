@@ -34,13 +34,11 @@
   <div class="form-outline mb-4">
     <label class="form-label" for="form6Example3">Что?</label>
         <select class="form-control" @bind="What_">
-         <option></option>
+         <option></option
+
             @for (int i = 1; i < valuesdata[2].Count; i++)
             {
-                @if (valuesdata[@i][2] != "")
-                {
                     <option value="@valuesdata[@i][2]">@valuesdata[@i][2]</option>    
-                }
             }
         </select>
   </div>
@@ -97,20 +95,6 @@
         </select>
   </div>
 
-    <div class="form-outline mb-4">
-    <label class="form-label" for="form6Example7">Месяц По порядку</label>
-        <select class="form-control" @bind="MonthInOrder_">
-         <option></option>
-            @for (int i = 1; i < valuesdata[9].Count; i++)
-            {
-                @if (valuesdata[@i][9] != "")
-                {
-                    <option value="@valuesdata[@i][9]">@valuesdata[@i][9]</option>    
-                }
-            }
-        </select>
-  </div>
-
   <button type="button" class="btn btn-primary" @onclick="SubmitData">Отправить</button>
   <button type="sumbit" class="btn btn-primary">Очистить</button>
 
@@ -129,10 +113,7 @@
     private string Employee_;
     private string Month_;
     private DateTime Date_  = DateTime.Now;
-    private int month_ = DateTime.Now.Month;
-
     private string Fund_;
-    private int MonthInOrder_ = DateTime.Now.Month;
 
     private readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
     private readonly string ApplicationName = "OneMoreCopy";
@@ -172,23 +153,16 @@
 
         foreach(var item in values)
         {
-            if (item.Count != 17 )
-            {
-                valuesdata.Add(item); 
-            }
-            else
-            {
-                return;
-            }
-
+            valuesdata.Add(item); 
         }
     }
 
     private void SubmitData()
     {
+        int MonthInOrder_ = Date_.Month;
         if (IncomeExpense_ != null && Sum_ != null && What_ != null && Employee_ != null && Month_ != null && Fund_ != null && MonthInOrder_ != null)
         {
-            var range = $"{sheet}!A:J18";
+            var range = $"{sheet}!A:G";
             var valueRange = new ValueRange();
 
             var objectList = new List<object>() { IncomeExpense_, Sum_, What_, Comment, Employee_, Month_, Date_.ToString("dd.MM.yyyy"), Fund_, MonthInOrder_ };
